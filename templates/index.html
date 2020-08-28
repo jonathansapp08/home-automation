@@ -2,30 +2,25 @@
 <p>{{ devices }}</p>
 
 <div class="control">
-<!-- <p>{{ tasks }}</p> -->
-<div class="todo">
-  {%for key, value in tasks%}
+  <div class="todo">
+    {%for key, value in tasks%}
+    <form action="{{ url_for('index') }}" method="POST">
+      <input type="hidden" name="deletetask" value="{{key}}"><br>
+      <button type submit class="button-large">Delete</button>
+    </form>
+    
+    <p>{{value}}</p>
+    {%endfor%}
+  </div>
+
   <form action="{{ url_for('index') }}" method="POST">
-    <input type="hidden" name="deletetask" value="{{key}}"><br>
-    <button type submit class="button-large">Delete</button>
+    <input type="text" name="addtask" value=""><br>
+    <button type submit class="button-large">Submit</button>
   </form>
-  
-  <p>{{value}}</p>
-  {%endfor%}
-</div>
-
-
-
-
-<form action="{{ url_for('index') }}" method="POST">
-  <input type="text" name="addtask" value=""><br>
-  <button type submit class="button-large">Submit</button>
-</form>
 </div>
 
 
 <div class="remote">
-
     <form action="{{ url_for('index') }}" method="POST">
         <input type="hidden" name="remote" value="PowerOn" />
         <button type submit class="button-large">Power On</button>
@@ -46,9 +41,6 @@
         <button type submit class="button-large">Home </button>
     </form>
 
-
-
-
     <form action="{{ url_for('index') }}" method="POST">
         <input type="hidden" name="remote" value="VolumeUp" />
         <button type submit class="button-large">+ </button>
@@ -63,8 +55,6 @@
         <input type="hidden" name="remote" value="VolumeMute" />
         <button type submit class="button-large">Mute </button>
     </form>
-
-
 
     <div class="grid">
         <form action="{{ url_for('index') }}" class="up" method="POST">
@@ -89,8 +79,6 @@
         </form>
       </div>
 
-
-
       <form action="{{ url_for('index') }}" method="POST">
         <input type="hidden" name="remote" value="Rev" />
         <button type submit class="button-large"><- </button>
@@ -105,11 +93,21 @@
         <input type="hidden" name="remote" value="Fwd" />
         <button type submit class="button-large">-> </button>
     </form>
-
-
-
-
 </div>
+
+
+
+<div class="lights">
+  {%for key, light in lights.items()%}
+  <p>{{ light['name'] }}</p>
+  <form action="{{ url_for('index') }}" method="POST">
+    <input type="hidden" name="toggle" value="{{key}}"><br>
+    <button type submit class="button-large">Toggle</button>
+  </form>
+  {%endfor%}
+</div>
+
+
 
 <style>
 .remote{

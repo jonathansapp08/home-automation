@@ -3,16 +3,18 @@ import os
 
 from todo import Todo
 from roku import Roku
+from hue import Hue
 
 app = Flask(__name__)
 
 todo = Todo(db='todo.db')
 tv = Roku(ip=os.environ['roku_ip'])
-lights = Hue(ip=os.environ['hue_ip'], username=os.environ['hue_username'])
+light = Hue(ip=os.environ['hue_ip'], username=os.environ['hue_username'])
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     tasks = todo.get()
+    lights = light.get()
 
     if request.method == 'POST' and 'addtask' in request.form:
         task = request.form['addtask']
@@ -29,9 +31,9 @@ def index():
     if request.method == 'POST' and 'remote' in request.form:
         action = request.form['remote']
         tv.control(action=action)
-        return render_template("index.html")
+        return render_template("index.html")    
 
-    return render_template("index.html", tasks=tasks)
+    return render_template("index.html", tasks=tasks, lights=lights)
 
 
 if __name__ == "__main__": 
