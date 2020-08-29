@@ -15,4 +15,4 @@ class Roku:
         """
         data = ''
         url = "http://" + self.ip + ":8060/keypress/" + action
-        response = requests.post(url, data = json.dumps(data))
+        response = requests.post(url, data = json.dumps(data), timeout=3)
