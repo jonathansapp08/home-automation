@@ -8,3 +8,7 @@ This is largely meant to be a learning opportunity for me. The solution will be 
 ## Roku
 For a full list of actions see:
 [Roku API Documentation](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md)
+
+## Hue Lights
+For a full list of actions see:
+[Hue API Documentation](https://developers.meethue.com/develop/hue-api/)
