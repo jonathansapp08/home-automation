@@ -19,13 +19,11 @@ class Hue():
     def toggle(self, light_id, current_state):
         """
         Toggle the current state of the light
-        """ 
+        """
         if current_state == True:
             on = False
         else:
             on = True
-
-        print(on)
 
         data = {"on":on}
         url = "http://" + self.ip + "/api/" + self.username + "/lights/" + light_id + "/state/"

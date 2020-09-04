@@ -1,110 +1,188 @@
 <h1>Welcome Home</h1>
-<p>{{ devices }}</p>
+
+<div class="devices">
+  <p>{{ devices }}</p>
+</div>
 
 <div class="control">
   <div class="todo">
-    {%for key, value in tasks%}
-    <form action="{{ url_for('index') }}" method="POST">
-      <input type="hidden" name="deletetask" value="{{key}}"><br>
-      <button type submit class="button-large">Delete</button>
-    </form>
+    <h3 style="margin-bottom: 0;">Todo List</h3>
+
+
+    <div>
+      <form action="{{ url_for('index') }}" method="POST">
+        <input type="text" name="addtask" value="">
+        <button type submit>Submit</button>
+      </form>
+    </div>
     
-    <p>{{value}}</p>
+
+    {%for key, value in tasks%}
+    <div style="margin-bottom: 0;">
+      <div style="display: inline-block;">
+        <form action="{{ url_for('index') }}" method="POST">
+          <input type="hidden" name="deletetask" value="{{key}}"><br>
+          <button type submit >Delete</button>
+        </form>
+      </div>
+  
+      <div style="display: inline-block;">
+        <p>{{value}}</p>
+      </div>
+    </div>
+
+
     {%endfor%}
+
+
+
+
+    
+
   </div>
 
-  <form action="{{ url_for('index') }}" method="POST">
-    <input type="text" name="addtask" value=""><br>
-    <button type submit class="button-large">Submit</button>
-  </form>
 </div>
 
 
-<div class="remote">
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="PowerOn" />
-        <button type submit class="button-large">Power On</button>
-    </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="PowerOff" />
-        <button type submit class="button-large">Power Off</button>
-    </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="Back" />
-        <button type submit class="button-large">Back </button>
-    </form>
+<div class="remote" style="border-color: red; border-style: solid;">
+    <h3 style="margin-bottom: 0;">Remote</h3>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="Home" />
-        <button type submit class="button-large">Home </button>
-    </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="VolumeUp" />
-        <button type submit class="button-large">+ </button>
-    </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="VolumeDown" />
-        <button type submit class="button-large">- </button>
-    </form>
+    <div style="display: block; text-align: center;">
+      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+          <input type="hidden" name="remote" value="PowerOn" />
+          <button type submit style="width: 40%; display: inline;">Power On</button>
+      </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="VolumeMute" />
-        <button type submit class="button-large">Mute </button>
-    </form>
+      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+          <input type="hidden" name="remote" value="PowerOff" />
+          <button type submit style="width: 40%; display: inline;">Power Off</button>
+      </form>
+    </div>    
 
-    <div class="grid">
+
+<div style="display: block; text-align: center;">
+  <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+    <input type="hidden" name="remote" value="Back" />
+    <button type submit>Back </button>
+</form>
+
+<form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+    <input type="hidden" name="remote" value="Home" />
+    <button type submit>Home </button>
+</form>
+</div>
+
+
+   
+
+    <div class="grid" style="text-align: center;">
         <form action="{{ url_for('index') }}" class="up" method="POST">
           <input type="hidden" name="remote" value="Up" />
-          <button type submit class="button-large">Up </button>
+          <button type submit>Up </button>
         </form>
         <form action="{{ url_for('index') }}" class="left" method="POST">
           <input type="hidden" name="remote" value="Left" />
-          <button type submit class="button-large">Left</button>
+          <button type submit>Left</button>
         </form>
         <form action="{{ url_for('index') }}" class="ok" method="POST">
           <input type="hidden" name="remote" value="Select" />
-          <button type submit class="button-large">OK</button>
+          <button type submit>OK</button>
         </form>
         <form action="{{ url_for('index') }}" class="right" method="POST">
           <input type="hidden" name="remote" value="Right" />
-          <button type submit class="button-large">Right</button>
+          <button type submit>Right</button>
         </form>
         <form action="{{ url_for('index') }}" class="down" method="POST">
           <input type="hidden" name="remote" value="Down" />
-          <button type submit class="button-large">Down</button>
+          <button type submit>Down</button>
         </form>
       </div>
 
-      <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="Rev" />
-        <button type submit class="button-large"><- </button>
-    </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="Play" />
-        <button type submit class="button-large">|> </button>
-    </form>
+    <div style="display: block; text-align: center;">
+      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+          <input type="hidden" name="remote" value="Rev" />
+          <button type submit><- </button>
+      </form>
 
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="hidden" name="remote" value="Fwd" />
-        <button type submit class="button-large">-> </button>
-    </form>
+      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+          <input type="hidden" name="remote" value="Play" />
+          <button type submit>|> </button>
+      </form>
+
+      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+          <input type="hidden" name="remote" value="Fwd" />
+          <button type submit>-> </button>
+      </form>
+    </div>
+
+
+
+<div style="display: block; text-align: center;">
+  <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+    <input type="hidden" name="remote" value="VolumeMute" />
+    <button type submit>Mute </button>
+</form>
+
+  <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+    <input type="hidden" name="remote" value="VolumeUp" />
+    <button type submit>+ </button>
+</form>
+
+<form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+    <input type="hidden" name="remote" value="VolumeDown" />
+    <button type submit>- </button>
+</form>
+
+
+
+
+</div>
+
+
+
+
 </div>
 
 
 
 <div class="lights">
+  <h3 style="margin-bottom: 0;">Lights</h3>
+
   {%for key, light in lights.items()%}
-  <p>{{ light['name'] }}</p>
-  <form action="{{ url_for('index') }}" method="POST">
-    <input type="hidden" name="toggle" value="{{key}}"><br>
-    <button type submit class="button-large">Toggle</button>
-  </form>
+  <div style="display: inline-block; padding-right: 25px;">
+    <p style="margin-bottom: 0; display: inline-block;">{{ light['name'] }}</p>
+    <form action="{{ url_for('index') }}" method="POST" style="margin-top: 0;">
+      <input type="hidden" name="toggle" value="{{key}}" style="display: inline-block;"><br>
+      <button type submit style="display: inline-block;">Toggle</button>
+    </form>
+  </div>
+
   {%endfor%}
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -116,17 +194,17 @@
 }
 
 .control{
-  width: 66%;
+  width: 66.3%;
   float: left;
 }
 
 .lights{
-  width: 66%;
+  width: 65.7%;
   float: left;
 }
 
 
-    .grid {
+.grid {
   display: inline-flex;           /* 1 */
   flex-flow: row wrap;
 }
@@ -145,4 +223,24 @@
 .right { justify-content: flex-start; }
 
 .ok {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
