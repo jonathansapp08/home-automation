@@ -1,10 +1,10 @@
 <h1>Welcome Home</h1>
 
-<div class="devices">
+<!-- <div class="devices">
   <p>{{ devices }}</p>
-</div>
+</div> -->
 
-<div class="control">
+<div class="control" id="rcorners1">
   <div class="todo">
     <h3 style="margin-bottom: 0;">Todo List</h3>
 
@@ -46,12 +46,12 @@
 
 
 
-<div class="remote" style="border-color: red; border-style: solid;">
+<div class="remote" id="rcorners1">
     <h3 style="margin-bottom: 0;">Remote</h3>
 
 
 
-    <div style="display: block; text-align: center;">
+    <div style="display: block; text-align: center; margin-top: 30px;">
       <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
           <input type="hidden" name="remote" value="PowerOn" />
           <button type submit style="width: 40%; display: inline;">Power On</button>
@@ -64,7 +64,7 @@
     </div>    
 
 
-<div style="display: block; text-align: center;">
+<div style="display: block; text-align: center; margin-top: 50px;">
   <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
     <input type="hidden" name="remote" value="Back" />
     <button type submit>Back </button>
@@ -79,7 +79,7 @@
 
    
 
-    <div class="grid" style="text-align: center;">
+    <div class="grid">
         <form action="{{ url_for('index') }}" class="up" method="POST">
           <input type="hidden" name="remote" value="Up" />
           <button type submit>Up </button>
@@ -103,7 +103,7 @@
       </div>
 
 
-    <div style="display: block; text-align: center;">
+    <div style="display: block; text-align: center; margin-top: 50px;">
       <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
           <input type="hidden" name="remote" value="Rev" />
           <button type submit><- </button>
@@ -122,7 +122,7 @@
 
 
 
-<div style="display: block; text-align: center;">
+<div style="display: block; text-align: center; margin-top: 50px;">
   <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
     <input type="hidden" name="remote" value="VolumeMute" />
     <button type submit>Mute </button>
@@ -150,7 +150,7 @@
 
 
 
-<div class="lights">
+<div class="lights" id="rcorners1">
   <h3 style="margin-bottom: 0;">Lights</h3>
 
   {%for key, light in lights.items()%}
@@ -164,49 +164,40 @@
 
   {%endfor%}
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 </div>
+
+
+
+
+
 
 
 
 <style>
 .remote{
-  width: 33%;
+  height: 70%;
+  width: 45%;
   float: right;
 }
 
 .control{
-  width: 66.3%;
+  width: 50%;
   float: left;
+  margin: 5px;
 }
 
 .lights{
-  width: 65.7%;
+  width: 50%;
   float: left;
+  margin: 5px;
 }
 
 
 .grid {
   display: inline-flex;           /* 1 */
   flex-flow: row wrap;
+  width: 100%;
+  margin-top: 50px;
 }
 
 .up, .down {
@@ -234,7 +225,11 @@
 
 
 
-
+#rcorners1 {
+  border-radius: 25px;
+  background: #efefef;
+  padding: 10px;
+}
 
 
 
