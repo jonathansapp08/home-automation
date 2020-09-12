@@ -11,8 +11,8 @@
 
     <div>
       <form action="{{ url_for('index') }}" method="POST">
-        <input type="text" name="addtask" value="">
-        <button type submit>Submit</button>
+        <input type="text" name="addtask" value="" class="addtask">
+        <button type submit class="submit">Submit</button>
       </form>
     </div>
     
@@ -22,7 +22,7 @@
       <div style="display: inline-block;">
         <form action="{{ url_for('index') }}" method="POST">
           <input type="hidden" name="deletetask" value="{{key}}"><br>
-          <button type submit >Delete</button>
+          <button type submit class="delete">Delete</button>
         </form>
       </div>
   
@@ -236,6 +236,61 @@
 
 
 
+
+@media (max-width: 1016px) {
+/* #rcorners1 {
+border-radius: 25px;
+background: #a52424;
+padding: 10px;
+} */
+
+button{
+  width: 250px;
+  max-width: 100%;
+  padding: 15px;
+}
+
+.addtask{
+  padding: 15px;
+  width: 50%;
+}
+
+.submit{
+  width:auto
+}
+
+.delete{
+  width: auto;
+}
+
+.control{
+  font-size:5vw;
+  width: 100%;
+  margin: auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+.remote{
+  font-size:5vw;
+  height: auto;
+  width: 100%;
+  margin: auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+.lights{
+  font-size:5vw;
+  width: 100%;
+  margin: auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+
+
+}
 
 
 </style>
