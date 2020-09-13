@@ -4,6 +4,9 @@ As someone who has leaned into the world of smart devices, I have found it frust
 
 This is largely meant to be a learning opportunity for me. The solution will be specific for my use cases, but feel free to take what works for you.
 
+## Todo List
+The todo list is made using shelve. For shelve documentation see:
+[Shelve Documentation](https://docs.python.org/3/library/shelve.html)
 
 ## Roku
 For a full list of actions see:
