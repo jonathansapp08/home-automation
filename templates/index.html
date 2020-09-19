@@ -1,203 +1,226 @@
-<h1>Welcome Home</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- <div class="devices">
-  <p>{{ devices }}</p>
-</div> -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3007bc7a5d.js" crossorigin="anonymous"></script>
+    <title>Home App</title>
+  </head>
+  <body>
+    <!-- #BBD5ED -->
+    <h1 style="margin-bottom: 0px; background-color: #edf2f4;">Welcome Home</h1>
 
-<div class="control" id="rcorners1">
-  <div class="todo">
-    <h3 style="margin-bottom: 0;">Todo List</h3>
+    <div class="content">
 
+      <div class="divleft">
+        
+        <div class="div-1" style="margin-top: 20px; margin-bottom: 20px;">
+          <div class="container">
+            <!-- HUE LIGHTS -->
+            <div class="lights" id="rcorners1">
+              <h3 style="background-color: #E63946; border-radius: 25px; padding: 5px;">Lights</h3>
+              {%for key, light in lights.items()%}
+              <div style="display: inline-block; padding-right: 25px;">
+                <p style="margin-bottom: 0; display: inline-block;">{{ light['name'] }}</p>
+                {% if light['state']['on'] == False %}
+                <form action="{{ url_for('index') }}" method="POST" style="margin-top: -15px;">
+                  <input type="hidden" name="toggle" value="{{key}}" style="display: inline-block;"><br>
+                  <button type submit style="display: inline-block; background: transparent; border-color: transparent;"><i class="fas fa-toggle-off fa-3x"></i></button>
+                </form>
+                {% else %}
+                  <form action="{{ url_for('index') }}" method="POST" style="margin-top: -15px;">
+                    <input type="hidden" name="toggle" value="{{key}}" style="display: inline-block;"><br>
+                    <button type submit style="display: inline-block; background: transparent; border-color: transparent;"><i class="fas fa-toggle-on fa-3x"></i></button>
+                  </form>
+                {% endif %}
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+        </div>
 
-    <div>
-      <form action="{{ url_for('index') }}" method="POST">
-        <input type="text" name="addtask" value="" class="addtask">
-        <button type submit class="submit">Submit</button>
-      </form>
-    </div>
-    
+        <div class="div-2">
+          <div class="container">
+            <!-- TODO LIST -->
+            <div class="todo" id="rcorners1">
+              <h3 style="background-color: #06d6a0; border-radius: 25px; padding: 5px;">Todo List</h3>
+              <div>
+                <form action="{{ url_for('index') }}" method="POST">
+                  <input type="text" name="addtask" value="" class="addtask">
+                  <button type submit class="submit">Submit</button>
+                </form>
+              </div>
+              {%for key, value in tasks%}
+              <div style="margin-bottom: 0;">
+                <div style="display: inline-block;">
+                  <form action="{{ url_for('index') }}" method="POST">
+                    <input type="hidden" name="deletetask" value="{{key}}"><br>
+                    <button type submit class="delete" style="background: transparent; border-color: transparent;"><i class="fas fa-trash-alt"></i></button>
+                    <!-- <button type submit class="delete">Delete</button> -->
+                  </form>
+                </div>
+                <div style="display: inline-block;">
+                  <p>{{ value|join(", ") }}</p>
+                </div>
+              </div>
+              {%endfor%}    
+            </div>
+          </div>
+        </div>
 
-    {%for key, value in tasks%}
-    <div style="margin-bottom: 0;">
-      <div style="display: inline-block;">
-        <form action="{{ url_for('index') }}" method="POST">
-          <input type="hidden" name="deletetask" value="{{key}}"><br>
-          <button type submit class="delete">Delete</button>
-        </form>
       </div>
-  
-      <div style="display: inline-block;">
-        <p>{{value}}</p>
+      
+      <div class="divright">
+        <div class="container">
+          <!-- ROKU REMOTE -->
+          <div class="remote" style="margin-top: 20px;" id="rcorners1">
+            <h3 style="margin-bottom: 0; background-color: #118ab2; border-radius: 25px; padding: 5px;">Remote</h3>
+            <div style="display: block; text-align: center; margin-top: 10px;">
+
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="PowerOn" />
+                <button type submit style="display: inline; width: 45%;">Power On</button>
+              </form>
+
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="PowerOff" />
+                <button type submit style="display: inline; width: 45%;">Power Off</button>
+              </form>
+
+            </div>    
+            <div style="display: block; text-align: center; margin-top: 50px;">
+
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="Back" />
+                <button type submit style="width: 45%;"><i class="fas fa-undo"></i></button>
+              </form>
+
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="Home" />
+                <button type submit style="width: 45%;"><i class="fas fa-home"></i></button>
+              </form>
+
+            </div>
+            <div class="grid">
+              
+              <form action="{{ url_for('index') }}" class="up" method="POST">
+                <input type="hidden" name="remote" value="Up" />
+                <button type submit style="width:50px;"><i class="fas fa-chevron-up"></i></button>
+              </form>
+
+              <form action="{{ url_for('index') }}" class="left" method="POST">
+                <input type="hidden" name="remote" value="Left" />
+                <button type submit><i class="fas fa-chevron-left"></i></button>
+              </form>
+      
+              <form action="{{ url_for('index') }}" class="ok" method="POST">
+                <input type="hidden" name="remote" value="Select" />
+                <button type submit style="margin: 15px;">OK</button>
+              </form>
+      
+              <form action="{{ url_for('index') }}" class="right" method="POST">
+                <input type="hidden" name="remote" value="Right" />
+                <button type submit><i class="fas fa-chevron-right"></i></button>
+              </form>
+              
+              <form action="{{ url_for('index') }}" class="down" method="POST">
+                <input type="hidden" name="remote" value="Down" />
+                <button type submit style="width:50px;"><i class="fas fa-chevron-down"></i></button>
+              </form>
+            </div>
+          
+            <div style="display: block; text-align: center; margin-top: 150px;">
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="Rev" />
+                <button type submit style="width: 30%"><i class="fas fa-fast-backward"></i></button>
+              </form>
+        
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="Play" />
+                <button type submit style="width: 30%"><i class="fas fa-play"></i></button>
+              </form>
+        
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="Fwd" />
+                <button type submit style="width: 30%"><i class="fas fa-fast-forward"></i></button>
+              </form>
+            </div>
+        
+            <div style="display: block; text-align: center; margin-top: 50px;">
+
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="VolumeMute" />
+                <button type submit style="width: 30%"><i class="fas fa-volume-mute"></i></button>
+              </form>
+
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="VolumeDown" />
+                <button type submit style="width: 30%"><i class="fas fa-volume-down"></i></button>
+              </form>
+            
+              <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
+                <input type="hidden" name="remote" value="VolumeUp" />
+                <button type submit style="width: 30%"><i class="fas fa-volume-up"></i></button>
+              </form>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-
-    {%endfor%}
-
-
-
-
-    
-
-  </div>
-
-</div>
-
-
-
-
-<div class="remote" id="rcorners1">
-    <h3 style="margin-bottom: 0;">Remote</h3>
-
-
-
-    <div style="display: block; text-align: center; margin-top: 30px;">
-      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-          <input type="hidden" name="remote" value="PowerOn" />
-          <button type submit style="width: 40%; display: inline;">Power On</button>
-      </form>
-
-      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-          <input type="hidden" name="remote" value="PowerOff" />
-          <button type submit style="width: 40%; display: inline;">Power Off</button>
-      </form>
-    </div>    
-
-
-<div style="display: block; text-align: center; margin-top: 50px;">
-  <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-    <input type="hidden" name="remote" value="Back" />
-    <button type submit>Back </button>
-</form>
-
-<form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-    <input type="hidden" name="remote" value="Home" />
-    <button type submit>Home </button>
-</form>
-</div>
-
-
-   
-
-    <div class="grid">
-        <form action="{{ url_for('index') }}" class="up" method="POST">
-          <input type="hidden" name="remote" value="Up" />
-          <button type submit>Up </button>
-        </form>
-        <form action="{{ url_for('index') }}" class="left" method="POST">
-          <input type="hidden" name="remote" value="Left" />
-          <button type submit>Left</button>
-        </form>
-        <form action="{{ url_for('index') }}" class="ok" method="POST">
-          <input type="hidden" name="remote" value="Select" />
-          <button type submit>OK</button>
-        </form>
-        <form action="{{ url_for('index') }}" class="right" method="POST">
-          <input type="hidden" name="remote" value="Right" />
-          <button type submit>Right</button>
-        </form>
-        <form action="{{ url_for('index') }}" class="down" method="POST">
-          <input type="hidden" name="remote" value="Down" />
-          <button type submit>Down</button>
-        </form>
-      </div>
-
-
-    <div style="display: block; text-align: center; margin-top: 50px;">
-      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-          <input type="hidden" name="remote" value="Rev" />
-          <button type submit><- </button>
-      </form>
-
-      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-          <input type="hidden" name="remote" value="Play" />
-          <button type submit>|> </button>
-      </form>
-
-      <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-          <input type="hidden" name="remote" value="Fwd" />
-          <button type submit>-> </button>
-      </form>
-    </div>
-
-
-
-<div style="display: block; text-align: center; margin-top: 50px;">
-  <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-    <input type="hidden" name="remote" value="VolumeMute" />
-    <button type submit>Mute </button>
-</form>
-
-  <form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-    <input type="hidden" name="remote" value="VolumeUp" />
-    <button type submit>+ </button>
-</form>
-
-<form action="{{ url_for('index') }}" method="POST" style="display: inline;">
-    <input type="hidden" name="remote" value="VolumeDown" />
-    <button type submit>- </button>
-</form>
-
-
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-<div class="lights" id="rcorners1">
-  <h3 style="margin-bottom: 0;">Lights</h3>
-
-  {%for key, light in lights.items()%}
-  <div style="display: inline-block; padding-right: 25px;">
-    <p style="margin-bottom: 0; display: inline-block;">{{ light['name'] }}</p>
-    <form action="{{ url_for('index') }}" method="POST" style="margin-top: 0;">
-      <input type="hidden" name="toggle" value="{{key}}" style="display: inline-block;"><br>
-      <button type submit style="display: inline-block;">Toggle</button>
-    </form>
-  </div>
-
-  {%endfor%}
-
-</div>
-
-
-
-
-
-
-
+  </body>
+</html>
 
 <style>
-.remote{
-  height: 70%;
-  width: 45%;
-  float: right;
+/* OVERALL LAYOUT */
+h3{
+  color: white;
 }
 
-.control{
-  width: 50%;
-  float: left;
-  margin: 5px;
+.content {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: row;
+  color: black;
 }
 
-.lights{
-  width: 50%;
-  float: left;
-  margin: 5px;
+.divleft {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
+.div-1 {
+  background: white;
+  flex: 1;
+}
 
+.div-2 {
+  background: white;
+  flex: 4;
+}
+
+.divright {
+  background: white;
+  flex: 1;
+}
+
+#rcorners1 {
+border-radius: 25px;
+background-color: #edf6f9;
+padding: 10px;
+} 
+
+/* STYLING FOR THE REMOTE */
 .grid {
   display: inline-flex;           /* 1 */
   flex-flow: row wrap;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .up, .down {
@@ -216,81 +239,39 @@
 .ok {}
 
 
+/* STYLING FOR DIFFERENT SCREEN SIZES */
+@media only screen and (max-width: 1500px) {
+  /* For mobile phones: */
+  [class*="div"] {
+    background: #edf2f4;
+  }
 
-
-
-
-
-
-
-
-
-#rcorners1 {
-  border-radius: 25px;
-  background: #efefef;
-  padding: 10px;
+  #rcorners1 {
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px;
+  } 
 }
 
-
-
-
-
-
-
-@media (max-width: 1016px) {
-/* #rcorners1 {
-border-radius: 25px;
-background: #a52424;
-padding: 10px;
-} */
-
-button{
-  width: 250px;
-  max-width: 100%;
-  padding: 15px;
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="content"] {
+    display: block;
+  }
+  [class*="container"] {
+    padding-top: 20px;
+    /* padding-bottom: 20px; */
+    background-color: clear;
+    /* background: #a8dadc; */
+  }
+  [class*="div"] {
+    background: #edf2f4;
+  }
+  
+  #rcorners1 {
+  border-radius: 0px;
+  /* background: #a8dadc; */
+  padding: opx;
+  } 
 }
-
-.addtask{
-  padding: 15px;
-  width: 50%;
-}
-
-.submit{
-  width:auto
-}
-
-.delete{
-  width: auto;
-}
-
-.control{
-  font-size:5vw;
-  width: 100%;
-  margin: auto;
-  float: none;
-  margin-bottom: 10px;
-}
-
-.remote{
-  font-size:5vw;
-  height: auto;
-  width: 100%;
-  margin: auto;
-  float: none;
-  margin-bottom: 10px;
-}
-
-.lights{
-  font-size:5vw;
-  width: 100%;
-  margin: auto;
-  float: none;
-  margin-bottom: 10px;
-}
-
-
-
-}
-
-
 </style>

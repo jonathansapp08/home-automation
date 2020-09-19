@@ -15,7 +15,6 @@ class Hue():
         data = response.json()
         return data
 
-
     def toggle(self, light_id, current_state):
         """
         Toggle the current state of the light

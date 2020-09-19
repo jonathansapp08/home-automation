@@ -37,13 +37,8 @@ def index():
         light_id = request.form['toggle']
         current_state = lights[light_id]['state']['on']
         light.toggle(light_id=light_id, current_state=current_state)
-        
-
-        # lights = light.get()
-        # current_state = lights[light_id]['state']['on']
-        # print(current_state)
-
-        return render_template("index.html", tasks=tasks, lights=lights)  
+        lights = light.get()
+        return render_template("index.html", tasks=tasks, lights=lights)
 
     return render_template("index.html", tasks=tasks, lights=lights)
 

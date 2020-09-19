@@ -6,7 +6,6 @@ import requests, json
 
 class Roku:
     def __init__(self, ip):
-        # self.ip = os.environ['ip']
         self.ip = ip
 
     def control(self, action):
@@ -15,4 +14,4 @@ class Roku:
         """
         data = ''
         url = "http://" + self.ip + ":8060/keypress/" + action
-        response = requests.post(url, data = json.dumps(data), timeout=3)
+        response = requests.post(url, data = json.dumps(data), timeout=10)

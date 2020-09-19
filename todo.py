@@ -15,7 +15,6 @@ class Todo():
         todolist = {}
         for task in tasks:
             todolist[task] = todo[task]
-
         return todolist.items()
 
     def post(self, task):
@@ -24,7 +23,7 @@ class Todo():
         """
         try:
             todo = shelve.open(self.db)
-            todo[str(len(todo) + 1)] = { task }
+            todo[str(len(todo) + 1)] = [task]
             todo.close()
             return '201'
         except:
