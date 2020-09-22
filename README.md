@@ -20,9 +20,10 @@ For a full list of actions see:
 
 ## Instructions
 
-1. Install Flask
+1. Install Dependencies
 ```
 pip install Flask
+pip install shelve
 ```
 
 2. Export the necessary info for the app 
@@ -33,7 +34,16 @@ export hue_ip='<HUE IP>'
 export hue_username='<HUE USERNAME>'
 ```
 
-3. Run the Flask app
+3. Setup up Nginx and Guincorn  
+Because Flask recommends that you do not use their development server you can follow [these steps](https://www.e-tinkers.com/2018/08/how-to-properly-host-flask-application-with-nginx-and-guincorn/) to set up your server.
+
+4. Connect to Raspberry Pi.  
+To figure out the ip address type the following into the command line:  
+``` 
+ifconfig wlan0 
 ```
-python main.py
-```
+
+### Optional
+If you don't want to connect to your pi through an ip address, connect via the hostname.  
+By default the pi's hostname will be **raspberrypi.local**  
+If you want to change it you can follow [these steps](https://www.tomshardware.com/how-to/raspberry-pi-change-hostname)
