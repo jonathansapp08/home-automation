@@ -35,7 +35,8 @@ export hue_username='<HUE USERNAME>'
 ```
 
 3. Setup up Nginx and Guincorn  
-Because Flask recommends that you do not use their development server you can follow [these steps](https://www.e-tinkers.com/2018/08/how-to-properly-host-flask-application-with-nginx-and-guincorn/) to set up your server.
+Because Flask recommends that you do not use their development server in a production environment.  
+To set up a porper server, you can follow [these steps](https://www.e-tinkers.com/2018/08/how-to-properly-host-flask-application-with-nginx-and-guincorn/) to set up your server.
 
 4. Connect to Raspberry Pi.  
 To figure out the ip address type the following into the command line:  
