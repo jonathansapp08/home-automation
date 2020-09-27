@@ -1,0 +1,26 @@
+# Default values for home.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+app:
+  name: flask
+  image: home:1.0
+  env:
+    roku_ip: <YOUR ROKU IP> 
+    hue_ip: <YOUR HUE IP>
+    hue_username: <YOUR HUE USERNAME>
+
+logging:
+  namespace: kube-logging
+
+  elasticsearch:
+    name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+
+  fluentd:
+    name: fluentd
+    image: fluent/fluentd-kubernetes-daemonset:v1.4.2-debian-elasticsearch-1.1
+
+  kibana:
+    name: kibana
+    image: docker.elastic.co/kibana/kibana:6.5.4

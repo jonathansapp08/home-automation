@@ -18,9 +18,6 @@ For a full list of actions see:
 For a full list of actions see:
 [Hue API Documentation](https://developers.meethue.com/develop/hue-api/)
 
-## EFK stack
-If you choose to deploy through Kubernetes, you can view the logs through an EFK stack.
-
 ## Standalone Instructions
 For those who just want to run the flask app.
 

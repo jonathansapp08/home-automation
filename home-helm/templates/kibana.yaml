@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.logging.kibana.name }}
+  namespace: {{ .Values.logging.namespace }}
+spec:
+  selector:
+    matchLabels:
+      run: {{ .Values.logging.kibana.name }}
+  template:
+    metadata:
+      labels:
+        run: {{ .Values.logging.kibana.name }}
+    spec:
+      containers:
+      - name: {{ .Values.logging.kibana.name }}
+        image: {{ .Values.logging.kibana.image }}
+        env:
+        - name: ELASTICSEARCH_URL
+          value: http://elasticsearch:9200
+        - name: XPACK_SECURITY_ENABLED
+          value: "true"
+        ports:
+        - containerPort: 5601
+          name: http
+          protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.logging.kibana.name }}
+  namespace: {{ .Values.logging.namespace }}
+  labels:
+    service: {{ .Values.logging.kibana.name }}
+spec:
+  type: NodePort
+  selector:
+    run: {{ .Values.logging.kibana.name }}
+  ports:
+  - port: 5601
+    targetPort: 5601

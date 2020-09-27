@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.logging.elasticsearch.name }}
+  namespace: {{ .Values.logging.namespace }}
+spec:
+  selector:
+    matchLabels:
+      component: {{ .Values.logging.elasticsearch.name }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.logging.elasticsearch.name }}
+    spec:
+      containers:
+      - name: {{ .Values.logging.elasticsearch.name }}
+        image: {{ .Values.logging.elasticsearch.image }}
+        env:
+        - name: discovery.type
+          value: single-node
+        ports:
+        - containerPort: 9200
+          name: http
+          protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.logging.elasticsearch.name }}
+  namespace: {{ .Values.logging.namespace }}
+  labels:
+    service: {{ .Values.logging.elasticsearch.name }}
+spec:
+  type: NodePort
+  selector:
+    component: {{ .Values.logging.elasticsearch.name }}
+  ports:
+  - port: 9200
+    targetPort: 9200
