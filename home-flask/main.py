@@ -25,7 +25,7 @@ def index():
             app.logger.info("Home: Added todo: " + str(task))
             return render_template("index.html", tasks=tasks, lights=lights)
         except:
-            app.logger.info("Home: Failed to add todo: " + str(task))
+            app.logger.error("Home: Failed to add todo: " + str(task))
 
     if request.method == 'POST' and 'deletetask' in request.form:
         try:
@@ -35,7 +35,7 @@ def index():
             app.logger.info("Home: Deleted todo: " + str(task))
             return render_template("index.html", tasks=tasks, lights=lights)
         except:
-            app.logger.info("Home: Failed to delete todo: " + str(task))
+            app.logger.error("Home: Failed to delete todo: " + str(task))
 
     if request.method == 'POST' and 'remote' in request.form:
         try:
@@ -44,7 +44,7 @@ def index():
             app.logger.info("Home: Remote action success: " + str(action))
             return render_template("index.html", tasks=tasks, lights=lights)   
         except:
-            app.logger.info("Home: Remote action failed: " + str(action))
+            app.logger.error("Home: Remote action failed: " + str(action))
 
     if request.method == 'POST' and 'toggle' in request.form:
         try:
@@ -55,7 +55,7 @@ def index():
             app.logger.info("Home: Success in toggling light: " + str(light_id))
             return render_template("index.html", tasks=tasks, lights=lights)
         except:
-            app.logger.info("Home: Failed to toggle light: " + str(light_id))
+            app.logger.error("Home: Failed to toggle light: " + str(light_id))
 
     return render_template("index.html", tasks=tasks, lights=lights)
 
